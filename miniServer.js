@@ -19,7 +19,7 @@ http.createServer(function (request, response) {
 }).listen(8080);
 
 // like a callback
-function handler (request, response) {
+function handler( request, response ) {
   var url = request.url;
   url = url.replace("/","");
   response.writeHead(200, {"Content-Type": "text/html"});
