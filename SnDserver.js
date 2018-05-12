@@ -31,7 +31,9 @@ http.createServer(
             // if (e && e.status === 404){
             //   file.serveFile('/testWHS.html', 404, {}, request, response);
             // }
-            if (e) { // There was an error serving the file
+            var urlArray = request.url.split("/");
+            console.log(urlArray);
+            if (e && urlArray[1]!="query") { // There was an error serving the file
               console.error("Error serving " + request.url + " - " + e.message);
 
               // Respond to the client
