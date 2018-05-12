@@ -2,7 +2,7 @@ var http  = require('http');
 var static = require('node-static');
 var fs = require('fs');
 var file = new static.Server('./public');
-var port = 8888;
+var port = 50232;
 
 http.createServer(function(request, response){
     request.addListener('end', function(){
@@ -12,7 +12,7 @@ http.createServer(function(request, response){
             }
         })
     }).resume();
-}).listen(8888, function(){
+}).listen(port, function(){
     console.log("server started on port " + port);
 })
 
