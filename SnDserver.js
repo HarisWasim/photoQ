@@ -1,20 +1,36 @@
 var http  = require('http');
 var static = require('node-static');
 var fs = require('fs');
-var file = new static.Server('./public');
+var file = new static.Server('./');
 var port = 8888;
 
-http.createServer(function(request, response){
+http.createServer(
+  function handler(request, response){
     request.addListener('end', function(){
         file.serve(request, response, function(e, res){
-            if (e && e.status === 404){
-                file.serveFile('/testWHS.html', 404, {}, request, response)
-            }
-        })
-    }).resume();
-}).listen(8888, function(){
+            // if (e && e.status === 404){
+            //   file.serveFile('/testWHS.html', 404, {}, request, response);
+            // }
+            if (e) { // There was an error serving the file
+              console.error("Error serving " + request.url + " - " + e.message);
+
+              // Respond to the client
+              response.writeHead(e.status, e.headers);
+              // response.write(e.status, e.headers);
+              response.write("Error serving page, file not found");
+              response.end();
+          }
+          }
+        );
+      }
+    ).resume();
+  }
+).listen(
+  port
+  , function (){
     console.log("server started on port " + port);
-})
+  }
+);
 
 // //404 response
 
