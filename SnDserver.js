@@ -4,17 +4,29 @@ var fs = require('fs');
 var file = new static.Server('./');
 var port = 50232;
 
-http.createServer(function(request, response){
-    request.addListener('end', function(){
-        file.serve(request, response, function(e, res){
+http.createServer(
+  function handler(request, response){
+    request.addListener(
+      'end'
+      , function(){
+        file.serve(
+          request
+          , response
+          , function(e, res){
             if (e && e.status === 404){
-                file.serveFile('/testWHS.html', 404, {}, request, response)
+              file.serveFile('/testWHS.html', 404, {}, request, response);
             }
-        })
-    }).resume();
-}).listen(port, function(){
+          }
+        );
+      }
+    ).resume();
+  }
+).listen(
+  port
+  , function (){
     console.log("server started on port " + port);
-})
+  }
+);
 
 // //404 response
 
