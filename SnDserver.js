@@ -1,7 +1,7 @@
 var http  = require('http');
 var static = require('node-static');
 var fs = require('fs');
-var file = new static.Server('./public');
+var file = new static.Server('./');
 var port = 50232;
 
 http.createServer(function(request, response){
