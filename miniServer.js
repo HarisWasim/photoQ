@@ -1,22 +1,23 @@
-// "Hello world" server
-
 //REQUIRE statements
 var http = require('http');
 var static = require('node-static');
 
-//
 // Create a node-static server instance to serve the './public' folder
-//
 var file = new static.Server('./public');
 
-http.createServer(function (request, response) {
-  request.addListener('end', function () {
-      //
-      // Serve files!
-      //
-      file.serve(request, response);
-  }).resume();
-}).listen(8080);
+http.createServer(
+  function ( request, response ) {
+    request.addListener(
+      'end'
+      , function () {
+        //
+        // Serve files!
+        //
+        file.serve(request, response);
+      }
+    ).resume();
+  }
+).listen(8080);
 
 // like a callback
 function handler( request, response ) {
@@ -27,8 +28,6 @@ function handler( request, response ) {
   response.write("<p>You asked for <code>" + url + "</code></p>");
   response.end();
 }
-
-
 var server = http.createServer(handler);
 
 server.listen('50232');//my port number
