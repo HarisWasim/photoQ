@@ -4,6 +4,26 @@ var fs = require('fs');
 var file = new static.Server('./');
 var port = 8888;
 
+//START SECTION import json
+var fs = require('fs');// file access module
+var photoURLArray = [];
+// code run on startup
+loadImageList();
+
+console.log(photoURLArray);//debugging
+
+function loadImageList () {
+
+  var data = fs.readFileSync('photoList.json');
+
+  if ( !data ) {
+    console.log("cannot read photoList.json");
+  } else {
+    photoURLArray = JSON.parse(data).photoURLs;
+  }
+}
+//END SECTION import json
+
 http.createServer(
   function handler(request, response){
     request.addListener('end', function(){
@@ -31,6 +51,8 @@ http.createServer(
     console.log("server started on port " + port);
   }
 );
+
+
 
 // //404 response
 
