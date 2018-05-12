@@ -6,10 +6,10 @@ var port = 50232;
 
 http.createServer(
   function handler(request, response){
-    request.addListener(
+    request.addListener(//add end event listener
       'end'
-      , function(){
-        file.serve(
+      , function(){//'end' callback
+        file.serve(//send the file
           request
           , response
           , function(e, res){
