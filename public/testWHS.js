@@ -1,26 +1,40 @@
-// Global; will be replaced by a call to the server! 
-var photoURLArray = 
-[
- { url: "http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/A%20Torre%20Manuelina.jpg"},
- { url: "http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/Uluru%20sunset1141.jpg" },
- { url: "http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/Sejong tomb 1.jpg"},
- { url: "http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/Serra%20da%20Capivara%20-%20Painting%207.JPG"},
- { url: "http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/Royal%20Palace%2c%20Rabat.jpg"},
- { url: "http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/Red%20pencil%20urchin%20-%20Papahnaumokukea.jpg"}
- ];
-
+var portNumber = 8888;
 
 // Called when the user pushes the "submit" button 
 function photoByNumber() {
-
+	
+	//ORIGINAL CODE
 	var num = document.getElementById("num").value;
 	num = num.trim();
 	var photoNum = Number(num);
-	if (photoNum != NaN) {
-		var photoURL = photoURLArray[photoNum].url;
+	var ourRequest = new XMLHttpRequest():
+	ourRequest.open("GET");
+
+	if ( photoNum != NaN ) {
+		var photoURL = photoURL[photoNum].url;
 		var display = document.getElementById("photoImg");
 		display.src = photoURL;
-	    }
+	}
+	
+	//NEW CODE
+	window.location = "http://localhost:8888/testWHS.html/query/?num=" + photoNum;
+	//this is verbatime from lec-5-9.pdf
+	// var oReq = new XMLHttpRequest();
+	// var url = "query?num="+num;
+	// oReq.open("GET",url);
+	// 	//I assume that this incomplete-looking  url
+	// 	// is ok because it's to our own local machine.
+	// oReq.addEventListener("load",respCallback);
+	// oReq.send();
+
+	//this function diverges from lex-5-9.pdf
+	function respCallback()
+	{
+		var imageUrl = oReq.responseText;
+			//methinks responseText is the image url
+		var imgElement = document.getElementById('photoImg');
+		imgElement.src = imageUrl;
+	}
 }
 
 

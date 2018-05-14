@@ -1,55 +1,75 @@
 var http  = require('http');
 var static = require('node-static');
 var fs = require('fs');
-var file = new static.Server('./');
-var port = 50232;
 
+var file = new static.Server('./');
+var port = 8888;
 //START SECTION import json
 var fs = require('fs');// file access module
 var photoURLArray = [];
-// code run on startup
-loadImageList();
-
-console.log(photoURLArray);//debugging
 
 function loadImageList () {
-
   var data = fs.readFileSync('photoList.json');
-
   if ( !data ) {
     console.log("cannot read photoList.json");
   } else {
     photoURLArray = JSON.parse(data).photoURLs;
   }
 }
+
+
+function runQuery(number, res){
+  if(number <= 989 && number >= 0){
+    var jsonResponse = fs.readFileSync('./photoList.json');
+    res.writeHead(200, {'Content-Type': 'text/plain' });
+    res.end(photoURLArray[number-1]);
+    console.log("Served query number " + number + ", which was the image " + photoURLArray[number-1]);
+    // console.log(photoURLArray[number-1]);
+    // console.log(number);
+  }else{
+    res.writeHead(404,{"Content-Type": "text/plain"} );
+    res.end("ERROR 404: Photo not found and out of range");
+  }
+}
+
+
+
+// code run on startup
+loadImageList();
+console.log(photoURLArray);//debugging
 //END SECTION import json
 
 http.createServer(
-  function handler(request, response){
+function handler(request, response){
     request.addListener('end', function(){
         file.serve(request, response, function(e, res){
-            // if (e && e.status === 404){
-            //   file.serveFile('/testWHS.html', 404, {}, request, response);
-            // }
-            var urlArray = request.url.split("/");
+            var urlArray = request.url.split("/"); 
             console.log(urlArray);
-            if (e && urlArray[1]!="query") { // There was an error serving the file
+            if(urlArray.length >=2 && urlArray[urlArray.length - 2] == "index.html"){
+              var isQuery = urlArray[urlArray.length-1].split("?").shift();
+              console.log(isQuery);
+            }else{
+              var isQuery = "Not a Query";
+            }
+            if(isQuery == "query"){
+              var queryNumber = urlArray[urlArray.length-1].split('?').pop().split('=').pop();
+              // console.log(queryNumber)
+              runQuery(queryNumber, response);  //run the query if there is a query      
+            }
+            else if (e && isQuery!="query") { // There was an error serving the file
               console.error("Error serving " + request.url + " - " + e.message);
-
               // Respond to the client
               response.writeHead(e.status, e.headers);
               // response.write(e.status, e.headers);
-              response.write("Error serving page, file not found");
+              response.write("404 PAGE NOT FOUND - Error serving page, file not found");
               response.end();
-          }
+            } 
           }
         );
       }
     ).resume();
   }
-).listen(
-  port
-  , function (){
+).listen(port, function (){
     console.log("server started on port " + port);
   }
 );
