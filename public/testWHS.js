@@ -1,5 +1,6 @@
-var portNumber = 8888;
-
+var portNumber = 50232;
+//haris's port number: 8888
+//jose's port number: 50232
 
 // Called when the user pushes the "submit" button 
 function photoByNumber() {
@@ -10,7 +11,7 @@ function photoByNumber() {
 	var photoNum = Number(num);
 
 	if ( photoNum != NaN ) {
-		var url = "localhost:" + portNumber + "/query?num=" + photoNum;
+		var url = "http://server162.site:" + portNumber + "/query?num=" + photoNum;
 		console.log(url);
 		var ourRequest = new XMLHttpRequest();
 		// var photoURL = photoURL[photoNum].url;
