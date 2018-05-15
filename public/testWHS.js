@@ -9,9 +9,17 @@ function photoByNumber() {
 	var num = document.getElementById("num").value;
 	num = num.trim();
 	var photoNum = Number(num);
+	if(photoNum>989 || photoNum <= 0){ //number is out of range and don't move forward
+		console.log("STATUS: 400, BAD REQUEST - Number is out of range");
+		return;
+	}
 
 	if ( photoNum != NaN ) {
+<<<<<<< HEAD
 		var url = "http://server162.site:" + portNumber + "/query?num=" + photoNum;
+=======
+		var url = "http://localhost:" + portNumber + "/query?num=" + photoNum;
+>>>>>>> origin/master
 		console.log(url);
 		var ourRequest = new XMLHttpRequest();
 		// var photoURL = photoURL[photoNum].url;
@@ -37,6 +45,9 @@ function photoByNumber() {
 	//this function diverges from lex-5-9.pdf
 	function respCallback()
 	{
+		var num = document.getElementById("num").value;
+		num = num.trim();
+		var photoNum = Number(num);
 		var imageUrl = "http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/" + this.responseText;
 			//methinks responseText is the image url
 		var imgElement = document.getElementById('photoImg');

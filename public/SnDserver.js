@@ -29,6 +29,7 @@ function runQuery(number, res){
   }else{
     res.writeHead(404,{"Content-Type": "text/plain"} );
     res.end("ERROR 404: Photo not found and out of range");
+    console.log("Query not found");
   }
 }
 
@@ -45,15 +46,17 @@ function handler(request, response){
         file.serve(request, response, function(e, res){
             var urlArray = request.url.split("/"); 
             console.log(urlArray);
-            if(urlArray.length >=2 && urlArray[urlArray.length - 1] == "index.html"){
-              var isQuery = urlArray[urlArray.length-1].split("?").shift();
-              console.log(isQuery);
+            if(urlArray.length >=2){
+              var urlArrayCopy = urlArray;
+              var isQuery = urlArrayCopy.pop().split("?").shift();
+             
             }else{
               var isQuery = "Not a Query";
             }
             if(isQuery == "query"){
-              var queryNumber = urlArray[urlArray.length-1].split('?').pop().split('=').pop();
-              // console.log(queryNumber)
+              var urlArray = request.url.split("/"); 
+              var queryNumber = urlArray.pop().split('?').pop().split('=').pop();
+              console.log("the query number is " + queryNumber);
               runQuery(queryNumber, response);  //run the query if there is a query      
             }
             else if (e && isQuery!="query") { // There was an error serving the file
