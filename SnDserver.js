@@ -2,7 +2,7 @@ var http  = require('http');
 var static = require('node-static');
 var fs = require('fs');
 
-var file = new static.Server('./');
+var file = new static.Server('./public');
 var port = 50232;
 //START SECTION import json
 var fs = require('fs');// file access module
