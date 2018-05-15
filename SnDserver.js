@@ -3,7 +3,7 @@ var static = require('node-static');
 var fs = require('fs');
 
 var file = new static.Server('./');
-var port = 8888;
+var port = 57641;
 //START SECTION import json
 var fs = require('fs');// file access module
 var photoURLArray = [];
