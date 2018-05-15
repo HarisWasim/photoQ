@@ -45,7 +45,7 @@ function handler(request, response){
         file.serve(request, response, function(e, res){
             var urlArray = request.url.split("/"); 
             console.log(urlArray);
-            if(urlArray.length >=2 && urlArray[urlArray.length - 2] == "index.html"){
+            if(urlArray.length >=2 && urlArray[urlArray.length - 1] == "index.html"){
               var isQuery = urlArray[urlArray.length-1].split("?").shift();
               console.log(isQuery);
             }else{

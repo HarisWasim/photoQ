@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/SnDserver.js"
+            "program": "${workspaceRoot}/Users/hariswasim/Desktop/Davis Work/Quarter_Work/Spring2018/ECS162/Assignments/github/photoQ/photoQ/SnDserver.js"
         }
     ]
 }
