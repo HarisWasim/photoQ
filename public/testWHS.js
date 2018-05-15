@@ -15,11 +15,7 @@ function photoByNumber() {
 	}
 
 	if ( photoNum != NaN ) {
-<<<<<<< HEAD
 		var url = "http://server162.site:" + portNumber + "/query?num=" + photoNum;
-=======
-		var url = "http://localhost:" + portNumber + "/query?num=" + photoNum;
->>>>>>> origin/master
 		console.log(url);
 		var ourRequest = new XMLHttpRequest();
 		// var photoURL = photoURL[photoNum].url;
