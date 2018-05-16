@@ -27,9 +27,9 @@ function runQuery(number, res){
     // console.log(photoURLArray[number-1]);
     // console.log(number);
   }else{
-    response.writeHead(400, {"Content-Type": "text/plain"});
-    response.write("Invalid Query");
-    response.end();
+    res.writeHead(400, {"Content-Type": "text/plain"});
+    res.write("Invalid Query");
+    res.end();
   }
 }
 
