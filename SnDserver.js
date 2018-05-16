@@ -2,8 +2,8 @@ var http  = require('http');
 var static = require('node-static');
 var fs = require('fs');
 
-var file = new static.Server('./');
-var port = 57641;
+var file = new static.Server('./public');
+var port = 8888;
 //START SECTION import json
 var fs = require('fs');// file access module
 var photoURLArray = [];
@@ -27,9 +27,9 @@ function runQuery(number, res){
     // console.log(photoURLArray[number-1]);
     // console.log(number);
   }else{
-    res.writeHead(404,{"Content-Type": "text/plain"} );
-    res.end("ERROR 404: Photo not found and out of range");
-    console.log("Query not found");
+    response.writeHead(400, {"Content-Type": "text/plain"});
+    response.write("Invalid Query");
+    response.end();
   }
 }
 
@@ -62,10 +62,12 @@ function handler(request, response){
             else if (e && isQuery!="query") { // There was an error serving the file
               console.error("Error serving " + request.url + " - " + e.message);
               // Respond to the client
-              response.writeHead(e.status, e.headers);
-              // response.write(e.status, e.headers);
-              response.write("404 PAGE NOT FOUND - Error serving page, file not found");
-              response.end();
+              function fileNotFound(e, res) {
+                if(e && (e.status === 404)) {
+                    file.serveFile('./not-found.html', 404, {}, request, response);
+                }
+            }
+            file.serve(request, response, fileNotFound);
             } 
           }
         );
