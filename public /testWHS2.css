@@ -1,0 +1,93 @@
+
+body {
+	min-height: 100vh;  /* need this line to 
+					tell body to fill viewport */
+	font-family: 'Montserrat', sans-serif;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	color: blue;
+     }
+
+header {
+       text-align: center;
+	   padding: 20px;
+	   font-size: 50px;
+}
+
+main{
+	background-color: rgba(216, 205, 205, 0.664);
+	font-family: 'Open Sans', sans-serif;
+	color: black;
+}
+
+#query{
+	text-align: center;
+	
+	
+}
+
+#top-header-container{
+	overflow: hidden;
+	position:relative;
+}
+
+#top-header-container #num{
+	border: 1px solid black;
+	overflow: hidden; 
+	height: 20px;
+	width: 40%;
+	display: inline-block;
+	padding: 10px 15px;
+	font-size: 20px;
+	-webkit-appearance: none;
+}
+
+#top-header-container .submit-button{
+	border: transparent;
+	position:relative;
+	overflow: hidden;
+	display: inline-block;
+	padding: 10px 15px;
+	font-size: 20px;
+	border-radius: 0;
+	-webkit-appearance: none;
+}
+
+
+#top-header-container #website-name{
+	float: left;
+	display: block;
+	text-align: center;
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: rgb(30, 196, 188);
+	font-weight: bold;
+	font-size: 50px;
+}
+
+main {
+     flex: 1 0 auto;  /* the sticky footer trick without the footer */
+}
+
+
+input {
+	border-style: solid;
+	border-radius: 5px;
+	font-size: medium;
+}
+
+
+p {
+	font-size: medium;
+	margin: 10px;
+}
+
+div#photoDisplay {
+    width: 400px;
+    margin: 20px;
+}
+
+img {
+    width: 100%;
+}
+
