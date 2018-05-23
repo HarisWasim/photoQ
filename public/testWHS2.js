@@ -163,6 +163,8 @@ class App extends React.Component {
 	}	
 }
 
+
+
 ReactDOM.render(<App />, document.getElementById("container"));
 
 // 	ReactDOM.render(React.createElement(App), document.getElementById("container"));
@@ -172,8 +174,7 @@ ReactDOM.render(<App />, document.getElementById("container"));
 		// display.src = photoURL;
 	    // }
 
-
-let fsClickGlobals = {
+var fsClickGlobals = {
 	firstClicked: false
 };
 function firstClick()
