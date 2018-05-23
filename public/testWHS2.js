@@ -1,4 +1,4 @@
-var port = 8888;
+var port = 50232;
 const MOBILE_WIDTH_MAX = 460;
 // import React from 'react';
 // import { render } from 'react-dom';

@@ -3,7 +3,7 @@ var http    = require('http');
 var static  = require('node-static');
 var sqlite3 = require('sqlite3').verbose();
 var fs      = require('fs');  // file access module
-var port    = 8888;
+var port    = 50232;
 var db      = new sqlite3.Database("PhotoQ.db");
 
 // Initialize the Server
