@@ -199,7 +199,15 @@ function firstClick()
 	let websiteName = document.getElementById('website-name');
 	let num = document.getElementById('num');
 
-	let defaults = {};
+	let defaults;
+	if ( fsClickGlobals.defaults === undefined )
+	{
+		defaults = fsClickGlobals.defaults = {};
+	}
+	else
+	{
+		defaults = fsClickGlobals.defaults;
+	}
 
 	//temporarily hide the title
 	defaults.websiteName = {
@@ -228,7 +236,9 @@ function firstClick()
 			.num.style.display;
 		num.style.width = defaults
 			.num.style.width;
-	}
+	};
+
+	return true;//so we do NOT call secondClick()
 }
 function secondClick()
 {
