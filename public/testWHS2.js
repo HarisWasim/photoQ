@@ -173,6 +173,9 @@ ReactDOM.render(<App />, document.getElementById("container"));
 	    // }
 
 
+let fsClickGlobals = {
+	firstClicked: false
+};
 function firstClick()
 {
 	let windowWidth = window.innerWidth;
@@ -182,24 +185,49 @@ function firstClick()
 	{
 		return false;
 	}
-	else if ( this.clicked )
+	else if ( fsClickGlobals.clicked )
 	{
 		return false;//let secondClick be called
 	}
 	else
 	{
-		this.clicked = true;
+		fsClickGlobals.clicked = true;
 	}
 
-	let headerContainer = document.getElementById('top-header-container');
+	//let headerContainer = document.getElementById('top-header-container');
 	let websiteName = document.getElementById('website-name');
-	let input = document.getElementById('num');
+	let num = document.getElementById('num');
+
+	let defaults = {};
 
 	//temporarily hide the title
+	defaults.websiteName = {
+		style: {
+			display: websiteName.style.display
+		}
+	};
 	websiteName.style.display = 'none';
 
 	//stretch the search bar, keep the button small
-	num.style.width
+	defaults.num = {
+		style: {
+			display: num.style.display,
+			width: num.style.display
+		}
+	};
+	num.style.display = 'inline-block';//the desktop value
+	num.style.width = '80%';
+
+	fsClickGlobals.reset = function()
+	{
+		websiteName.style.display = defaults
+			.websiteName.style.display;
+
+		num.style.display = defaults
+			.num.style.display;
+		num.style.width = defaults
+			.num.style.width;
+	}
 }
 function secondClick()
 {
@@ -212,8 +240,7 @@ function secondClick()
 	}
 	else
 	{
-		firstClick.clicked = false;//let it be clicked again
+		fsClickGlobals.reset();
+		fsClickGlobals.clicked = false;//let it be clicked again
 	}
-
-
 }
