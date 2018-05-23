@@ -1,5 +1,5 @@
 var port = 8888;
-
+const MOBILE_WIDTH_MAX = 460;
 // import React from 'react';
 // import { render } from 'react-dom';
 
@@ -19,7 +19,6 @@ var port = 8888;
 
 // A react component for a tag
 class Tag extends React.Component {
-
     render () {
 		return (
 			<p className="tagText">{this.props.text}</p>
@@ -46,9 +45,6 @@ class TileControl extends React.Component {
 		);
 	}		
 };
-
-
-
 
 class ImageTile extends React.Component {
 	
@@ -167,7 +163,6 @@ class App extends React.Component {
 	}	
 }
 
-
 ReactDOM.render(<App />, document.getElementById("container"));
 
 // 	ReactDOM.render(React.createElement(App), document.getElementById("container"));
@@ -176,3 +171,49 @@ ReactDOM.render(<App />, document.getElementById("container"));
 		// var display = document.getElementById("photoImg");
 		// display.src = photoURL;
 	    // }
+
+
+function firstClick()
+{
+	let windowWidth = window.innerWidth;
+
+	if ( MOBILE_WIDTH_MAX < windowWidth )
+	//this is not the mobile view
+	{
+		return false;
+	}
+	else if ( this.clicked )
+	{
+		return false;//let secondClick be called
+	}
+	else
+	{
+		this.clicked = true;
+	}
+
+	let headerContainer = document.getElementById('top-header-container');
+	let websiteName = document.getElementById('website-name');
+	let input = document.getElementById('num');
+
+	//temporarily hide the title
+	websiteName.style.display = 'none';
+
+	//stretch the search bar, keep the button small
+	num.style.width
+}
+function secondClick()
+{
+	let windowWidth = window.innerWidth;
+
+	if ( MOBILE_WIDTH_MAX < windowWidth )
+	//this is not the mobile view
+	{
+		return false;
+	}
+	else
+	{
+		firstClick.clicked = false;//let it be clicked again
+	}
+
+
+}

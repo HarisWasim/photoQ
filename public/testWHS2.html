@@ -14,14 +14,16 @@
 </head>
 
 <body>
-  
   <header id = "top-header-container">
     <h1 id="website-name">PHOTOQ</h1>
     
     <div id="query">
-        <input id="num" placeholder="1, 244, 12, 90, 32">
-        <button onclick="photoByNumber();" id="search-icon" class="fas fa-search submit-button"></button>
-      </div>
+      <input id="num" placeholder="1, 244, 12, 90, 32">
+      <button onclick="firstClick() || ( photoByNumber(), secondClick() );" id="search-icon"
+        class="fas fa-search submit-button">
+        <!--firstClick is a disgusting band-aid solution-->
+      </button>
+    </div>
       
     
   </header>
